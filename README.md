@@ -27,3 +27,12 @@ css 스타일링까지 마쳤다.
   ```
 margin을 이용해서 좌우로는 크게, 상하로는 작게 랜덤 숫자를 부여했다.  
 그러나 이미지가 한장만 넣어진다는 문제가 있다.
+
+### 201210 02:51
+`position: absolute`를 이용하여 정해진 범위 안에서 랜덤 배치하는 방법으로.  
+MDN 사이트의 예제를 참고했다.  
+```javascript
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+```
