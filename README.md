@@ -47,7 +47,7 @@ js에서 `gameTimer.style.visibility = "visible";` 이러한 방법을 사용한
 
 ### 201210 05:13
 `setInterval`과 `clearInterval`을 사용해서 게임 시작 타이머 기능을 만들었다.  
-`setInterval`을 호출하면 리턴되는 함수를 `clearInterval`에 입력하면 된다.
+`setInterval`을 호출하면 리턴되는 함수를 `clearInterval`에 입력하면 된다는 것을 알게 되었다.
 
 
 
