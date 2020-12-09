@@ -6,6 +6,12 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+button,
+button:focus {
+  outline: none;
+  border: none;
+}
+
 .game {
   margin: auto;
   width: 800px;
@@ -62,6 +68,14 @@ body {
   font-size: 30px;
   line-height: 40px;
   border-radius: 50%;
+}
+
+.main {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 240px;
+  border: 4px dashed red;
 }
 
 .footer {
