@@ -1,11 +1,62 @@
 //게임 맵 랜덤배치
+const CARROT_SIZE = 80;
+const CARROT_COUNT = 5;
+const BUG_COUNT = 5;
+
 const field = document.querySelector(".main");
 const fieldRect = field.getBoundingClientRect();
-const CARROT_SIZE = 80;
+const palyBtn = document.querySelector(".game__play");
+const gameTimer = document.querySelector(".game__time");
+const gameScore = document.querySelector(".game__score");
+
+//게임의 상태를 기억할 변수 선언해놓기
+let started = false;
+let score = 0;
+let timer = undefined;
+
+palyBtn.addEventListener("click", () => {
+  if (started) {
+    stopGame();
+  } else {
+    startGame();
+  }
+  started = !started; //버튼을 누르면 상태가 바뀌니까
+});
+
+//게임 중지
+function stopGame() {}
+
+//게임 시작
+function startGame() {
+  initGame();
+  iconPause();
+  showTimerAndScore();
+  startTimer();
+}
+
+function startTimer() {
+  setInterval(countDown, 1000);
+  function countDown(down) {
+    gameTimer.innerHTML = `00:0${down}`;
+  }
+}
+
+function showTimerAndScore() {
+  gameTimer.style.visibility = "visible";
+  gameScore.style.visibility = "visible";
+}
+
+function iconPause() {
+  const icon = document.querySelector(".fa-play");
+  icon.classList.remove("fa-play");
+  icon.classList.add("fa-pause");
+}
 
 function initGame() {
-  addItem("carrot", "5", "./img/carrot.png");
-  addItem("bug", "5", "./img/bug.png");
+  field.innerHTML = "";
+  gameScore.innerHTML = CARROT_COUNT;
+  addItem("carrot", CARROT_COUNT, "./img/carrot.png");
+  addItem("bug", BUG_COUNT, "./img/bug.png");
 }
 
 function addItem(className, count, src) {
@@ -29,5 +80,3 @@ function addItem(className, count, src) {
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
-
-initGame();
