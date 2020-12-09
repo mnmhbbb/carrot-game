@@ -34,7 +34,7 @@ palyBtn.addEventListener("click", () => {
 function finishGame(win) {
   started = false;
   iconHide();
-  stopTimer();
+  stopTimer(); //이걸 빼먹었더니 시간 버그가 자꾸 발생했음.
   showPopUp(win ? "YOU WIN!" : "YOU LOST");
 }
 
