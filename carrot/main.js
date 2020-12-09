@@ -28,13 +28,13 @@ palyBtn.addEventListener("click", () => {
   } else {
     startGame();
   }
-  // started = !started; //버튼을 누르면 상태가 바뀌니까
 });
 
 //게임 종료
 function finishGame(win) {
   started = false;
   iconHide();
+  stopTimer();
   showPopUp(win ? "YOU WIN!" : "YOU LOST");
 }
 
@@ -54,7 +54,6 @@ function startGame() {
   iconPause();
   showTimerAndScore();
   startTimer();
-  iconRe();
 }
 
 function showPopUp(text) {
@@ -79,7 +78,7 @@ function startTimer() {
   let remainingTimeSec = GAME_DURATION_SEC;
   initTimer(remainingTimeSec);
   timer = setInterval(() => {
-    initTimer((remainingTimeSec -= 1));
+    initTimer(--remainingTimeSec);
     if (remainingTimeSec <= 0) {
       clearInterval(timer);
       finishGame(CARROT_COUNT === score);
