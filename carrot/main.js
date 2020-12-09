@@ -46,12 +46,10 @@ bug.src = "./img/bug.png";
 const carrot = new Image();
 carrot.src = "./img/carrot.png";
 function mission() {
-  for (let j = 0; j < 6; j++) {
-    main.appendChild(bug);
-    main.appendChild(carrot);
-    let random = Math.floor(Math.random() * 100);
-    let randomm = Math.floor(Math.random() * 100);
-    bug.style.margin = `${random}px ${randomm}px`;
-  }
+  main.appendChild(bug);
+  let randomY = Math.floor(Math.random() * 100);
+  let randomX = Math.floor(Math.random() * 750);
+  bug.style.margin = `${randomY}px ${randomX}px`;
+  console.log(`x: ${randomX} y:${randomY}`);
 }
 mission();
