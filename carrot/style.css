@@ -24,12 +24,12 @@ button:focus {
   position: relative;
 }
 
-.header {
+.game__header {
   padding: 10px;
   text-align: center;
 }
 
-.header .play {
+.game__play {
   margin: auto;
   cursor: pointer;
   width: 60px;
@@ -44,11 +44,11 @@ button:focus {
   transition: transform 200ms ease-in;
 }
 
-.header .play:hover {
+.game__play:hover {
   transform: scale(1.1);
 }
 
-.header .time {
+.game__time {
   margin: auto;
   width: 150px;
   border-radius: 10px;
@@ -58,7 +58,7 @@ button:focus {
   margin-bottom: 10px;
 }
 
-.header .count {
+.game__score {
   width: 50px;
   height: 50px;
   margin: auto;
@@ -78,9 +78,9 @@ button:focus {
   border: 4px dashed red;
 }
 
-.footer {
+.pop-up {
   display: none;
-  background-color: black;
+  background-color: #00000090;
   color: white;
   width: 500px;
   height: 150px;
@@ -89,11 +89,11 @@ button:focus {
   padding: 15px;
   text-align: center;
   position: absolute;
-  bottom: 50px;
+  bottom: 150px;
   left: 150px;
 }
 
-.footer .replay {
+.pop-up__replay {
   margin: auto;
   cursor: pointer;
   width: 60px;
@@ -108,10 +108,10 @@ button:focus {
   transition: transform 200ms ease-in;
 }
 
-.footer .replay:hover {
+.pop-up__replay:hover {
   transform: scale(1.1);
 }
 
-.footer .endingMent {
+.pop-up__ending {
   font-size: 40px;
 }

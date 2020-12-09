@@ -1,4 +1,4 @@
-const play = document.querySelector(".play");
+const play = document.querySelector(".game__play");
 let i = 10;
 
 //플레이버튼 누르면 각 함수들 실행
@@ -33,9 +33,9 @@ function timeOver() {
 
 //엔딩 멘트 창
 function end() {
-  const endingMent = document.querySelector(".footer");
-  endingMent.style.display = "block";
-  endingMent.style.opacity = "0.6";
+  const ending = document.querySelector(".pop-up");
+  ending.style.display = "block";
+  ending.style.opacity = "0.6";
   //성공 or 실패 멘트
 }
 
