@@ -36,3 +36,14 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 ```
+### 201210 03:58
+원래 안 보였는데, 이벤트 발생했을 때 보이게 하는 방법 중   
+`classList.add` 방법 말고 새로운 방법을 알게 되었다.
+css에 `visibility: hidden;` 을 입력하고,  
+js에서 `gameTimer.style.visibility = "visible";` 이러한 방법을 사용한다.  
+그리고 play 버튼을 누르면 아이콘이 바뀌고, 맵이 펼쳐지고, 스코어와 타이머가 보이는 기능까지 완료했다.
+
+
+
+
+
