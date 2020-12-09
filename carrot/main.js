@@ -1,55 +1,33 @@
-const play = document.querySelector(".game__play");
-let i = 10;
-
-//플레이버튼 누르면 각 함수들 실행
-play.addEventListener("click", (e) => {
-  if (e.target.className === "fas fa-play") {
-    e.target.className = "fas fa-pause";
-    if (i == 10) {
-      setTimeout(timeOver, 10000);
-      let timeId = setInterval(timeCount, 1000);
-    } else if (i == 0) {
-      clearTimeout(timeId);
-      return;
-    }
-  } else if (e.target.className === "fas fa-pause") {
-    e.target.className = "fas fa-play";
-  }
-});
-
-function timeCount() {
-  i -= 1;
-  if (i < 0) {
-    i = 0;
-    console.log("game over");
-  } else {
-    console.log(i);
-  }
-}
-
-function timeOver() {
-  console.log("time over...");
-}
-
-//엔딩 멘트 창
-function end() {
-  const ending = document.querySelector(".pop-up");
-  ending.style.display = "block";
-  ending.style.opacity = "0.6";
-  //성공 or 실패 멘트
-}
-
 //게임 맵 랜덤배치
-const main = document.querySelector(".main");
-const bug = new Image();
-bug.src = "./img/bug.png";
-const carrot = new Image();
-carrot.src = "./img/carrot.png";
-function mission() {
-  main.appendChild(bug);
-  let randomY = Math.floor(Math.random() * 100);
-  let randomX = Math.floor(Math.random() * 750);
-  bug.style.margin = `${randomY}px ${randomX}px`;
-  console.log(`x: ${randomX} y:${randomY}`);
+const field = document.querySelector(".main");
+const fieldRect = field.getBoundingClientRect();
+const CARROT_SIZE = 80;
+
+function initGame() {
+  addItem("carrot", "5", "./img/carrot.png");
+  addItem("bug", "5", "./img/bug.png");
 }
-mission();
+
+function addItem(className, count, src) {
+  const x1 = 0;
+  const y1 = 0;
+  const x2 = fieldRect.width - CARROT_SIZE;
+  const y2 = fieldRect.height - CARROT_SIZE;
+  for (let i = 0; i < count; i++) {
+    const item = document.createElement("img");
+    item.setAttribute("class", className);
+    item.setAttribute("src", src);
+    item.style.position = "absolute";
+    const x = randomNumber(x1, x2);
+    const y = randomNumber(y1, y2);
+    item.style.left = `${x}px`;
+    item.style.top = `${y}px`;
+    field.appendChild(item);
+  }
+}
+
+function randomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+initGame();
