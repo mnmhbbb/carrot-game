@@ -33,16 +33,16 @@ palyBtn.addEventListener("click", () => {
 //게임 종료
 function finishGame(win) {
   started = false;
-  iconHide();
+  pauseHide();
   stopTimer(); //이걸 빼먹었더니 시간 버그가 자꾸 발생했음.
-  showPopUp(win ? "YOU WIN!" : "YOU LOST");
+  showPopUp(win ? "YOU WON!" : "YOU LOST");
 }
 
 //게임 중지
 function stopGame() {
   started = false;
   stopTimer();
-  iconHide();
+  pauseHide();
   showPopUp("REPLAY?");
 }
 
@@ -51,7 +51,7 @@ function startGame() {
   started = true;
   score = 0;
   initGame();
-  iconPause();
+  btnPause();
   showTimerAndScore();
   startTimer();
 }
@@ -66,7 +66,7 @@ popUpBtn.addEventListener("click", () => {
   popUp.classList.add("pop-up--hide");
 });
 
-function iconHide() {
+function pauseHide() {
   palyBtn.style.visibility = "hidden";
 }
 
@@ -97,7 +97,7 @@ function showTimerAndScore() {
   gameScore.style.visibility = "visible";
 }
 
-function iconPause() {
+function btnPause() {
   const icon = document.querySelector(".fas");
   icon.classList.remove("fa-play");
   icon.classList.add("fa-pause");

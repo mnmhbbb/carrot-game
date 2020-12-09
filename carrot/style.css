@@ -4,6 +4,8 @@
 
 body {
   font-family: "Noto Sans KR", sans-serif;
+  cursor: auto;
+  user-select: none;
 }
 
 button,
@@ -83,7 +85,7 @@ button:focus {
   display: block;
   background-color: #00000090;
   color: white;
-  width: 500px;
+  width: 400px;
   height: 150px;
   margin: auto;
   border-radius: 20px;
