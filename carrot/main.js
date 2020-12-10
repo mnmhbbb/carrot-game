@@ -56,6 +56,29 @@ function startGame() {
   startTimer();
 }
 
+function stopTimer() {
+  clearInterval(timer);
+}
+
+//타이머 작동
+function startTimer() {
+  let remainingTimeSec = GAME_DURATION_SEC;
+  updateTimer(remainingTimeSec);
+  timer = setInterval(() => {
+    updateTimer(--remainingTimeSec);
+    if (remainingTimeSec <= 0) {
+      clearInterval(timer);
+      finishGame(CARROT_COUNT === score);
+      return;
+    }
+  }, 1000);
+}
+
+function updateTimer(time) {
+  const seconds = time % 60;
+  gameTimer.innerHTML = `00:0${seconds}`;
+}
+
 function showPopUp(text) {
   popUp.classList.remove("pop-up--hide");
   popUpMessage.innerHTML = text;
@@ -68,28 +91,6 @@ popUpBtn.addEventListener("click", () => {
 
 function pauseHide() {
   palyBtn.style.visibility = "hidden";
-}
-
-function stopTimer() {
-  clearInterval(timer);
-}
-
-function startTimer() {
-  let remainingTimeSec = GAME_DURATION_SEC;
-  initTimer(remainingTimeSec);
-  timer = setInterval(() => {
-    initTimer(--remainingTimeSec);
-    if (remainingTimeSec <= 0) {
-      clearInterval(timer);
-      finishGame(CARROT_COUNT === score);
-      return;
-    }
-  }, 1000);
-}
-
-function initTimer(time) {
-  const seconds = time % 60;
-  gameTimer.innerHTML = `00:0${seconds}`;
 }
 
 function showTimerAndScore() {
