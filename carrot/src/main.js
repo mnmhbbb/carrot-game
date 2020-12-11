@@ -1,5 +1,7 @@
 "use strict";
 
+import PopUp from "./popup.js";
+
 //게임 맵 랜덤배치
 const CARROT_SIZE = 80;
 const CARROT_COUNT = 5;
@@ -11,17 +13,16 @@ const fieldRect = field.getBoundingClientRect();
 const palyBtn = document.querySelector(".game__play");
 const gameTimer = document.querySelector(".game__time");
 const gameScore = document.querySelector(".game__score");
-const popUp = document.querySelector(".pop-up");
-const popUpMessage = document.querySelector(".pop-up__ending");
-const popUpBtn = document.querySelector(".pop-up__replay");
 
 //게임의 상태를 기억할 변수 선언해놓기
 let started = false;
 let score = 0;
 let timer = undefined;
 
-field.addEventListener("click", onFieldClick);
+const gameFinishBanner = new PopUp();
+gameFinishBanner.setClickListener(startGame);
 
+field.addEventListener("click", onFieldClick);
 palyBtn.addEventListener("click", () => {
   if (started) {
     stopGame();
@@ -35,7 +36,7 @@ function finishGame(win) {
   started = false;
   pauseHide();
   stopTimer(); //이걸 빼먹었더니 시간 버그가 자꾸 발생했음.
-  showPopUp(win ? "YOU WON!" : "YOU LOST");
+  gameFinishBanner.show(win ? "YOU WON!" : "YOU LOST");
 }
 
 //게임 중지
@@ -43,7 +44,7 @@ function stopGame() {
   started = false;
   stopTimer();
   pauseHide();
-  showPopUp("REPLAY?");
+  gameFinishBanner.show("REPLAY?");
 }
 
 //게임 시작
@@ -79,23 +80,13 @@ function updateTimer(time) {
   gameTimer.innerHTML = `00:0${seconds}`;
 }
 
-function showPopUp(text) {
-  popUp.classList.remove("pop-up--hide");
-  popUpMessage.innerHTML = text;
-}
-
-popUpBtn.addEventListener("click", () => {
-  startGame();
-  popUp.classList.add("pop-up--hide");
-});
-
-function pauseHide() {
-  palyBtn.style.visibility = "hidden";
-}
-
 function showTimerAndScore() {
   gameTimer.style.visibility = "visible";
   gameScore.style.visibility = "visible";
+}
+
+function pauseHide() {
+  palyBtn.style.visibility = "hidden";
 }
 
 function btnPause() {
