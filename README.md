@@ -123,3 +123,12 @@ func.apply(thisArg, [argsArray])
 ```
 `thisArg`는 this에 바인딩할 객체, `argArray`는 함수를 호출할 때 넘길 인자들의 배열을 나타냄  
 (`call`은 보통 함수처럼 인자를 넣는다.)
+
+### 201213
+game 부분까지 완료.  
+
+
+
+`const game = new Game(5, 5, 5);` 부분을 개선하기 위해 `builder pattern` 이라는 것을 배웠다.  
+위 코드는 어떤 위치에 어떤 타입의 데이터를 받는지 명시적이지 않아서 그 인자가 어떤 값인지 파악이 힘들기 때문에 실수할 가능성이 있다.  
+
