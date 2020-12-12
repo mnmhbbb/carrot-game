@@ -1,7 +1,7 @@
 "use strict";
 
 import PopUp from "./popup.js";
-import Game from "./game.js";
+import GameBuilder from "./game.js";
 import Field from "./field.js";
 
 const CARROT_COUNT = 5;
@@ -13,7 +13,12 @@ gameFinishBanner.setClickListener(() => {
   game.start();
 });
 
-const game = new Game(5, 5, 5);
+const game = new GameBuilder()
+  .withGameDuration(5)
+  .withCarrotCount(5)
+  .withBugCount(5)
+  .build();
+
 game.setGameStopListener((reason) => {
   let message;
   switch (reason) {
