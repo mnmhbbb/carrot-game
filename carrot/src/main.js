@@ -1,15 +1,12 @@
 "use strict";
 
 import PopUp from "./popup.js";
+import Field from "./field.js";
 
-//게임 맵 랜덤배치
-const CARROT_SIZE = 80;
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
 const GAME_DURATION_SEC = 5;
 
-const field = document.querySelector(".main");
-const fieldRect = field.getBoundingClientRect();
 const palyBtn = document.querySelector(".game__play");
 const gameTimer = document.querySelector(".game__time");
 const gameScore = document.querySelector(".game__score");
@@ -22,7 +19,30 @@ let timer = undefined;
 const gameFinishBanner = new PopUp();
 gameFinishBanner.setClickListener(startGame);
 
-field.addEventListener("click", onFieldClick);
+const gameField = new Field(CARROT_COUNT, BUG_COUNT);
+gameField.setClickListener(onItemClick);
+
+function onItemClick(item) {
+  if (!started) {
+    return;
+  }
+  if (item === "carrot") {
+    score++;
+    updateScore();
+    if (score === CARROT_COUNT) {
+      finishGame(true);
+    }
+  } else if (item === "bug") {
+    finishGame(false);
+  }
+}
+
+function initGame() {
+  score = 0;
+  gameScore.innerHTML = CARROT_COUNT;
+  gameField.init();
+}
+
 palyBtn.addEventListener("click", () => {
   if (started) {
     stopGame();
@@ -35,7 +55,7 @@ palyBtn.addEventListener("click", () => {
 function finishGame(win) {
   started = false;
   pauseHide();
-  stopTimer(); //이걸 빼먹었더니 시간 버그가 자꾸 발생했음.
+  stopTimer();
   gameFinishBanner.show(win ? "YOU WON!" : "YOU LOST");
 }
 
@@ -96,53 +116,6 @@ function btnPause() {
   palyBtn.style.visibility = "visible";
 }
 
-function initGame() {
-  field.innerHTML = "";
-  gameScore.innerHTML = CARROT_COUNT;
-  addItem("carrot", CARROT_COUNT, "./img/carrot.png");
-  addItem("bug", BUG_COUNT, "./img/bug.png");
-}
-
-function onFieldClick(e) {
-  if (!started) {
-    return; //게임이 시작되지 않았으면 함수를 종료
-  }
-  const target = e.target;
-  if (target.matches(".carrot")) {
-    target.remove();
-    score++;
-    updateScore();
-    if (score === CARROT_COUNT) {
-      finishGame(true);
-    }
-  } else if (target.matches(".bug")) {
-    stopTimer();
-    finishGame(false);
-  }
-}
-
 function updateScore() {
   gameScore.innerHTML = CARROT_COUNT - score;
-}
-
-function addItem(className, count, src) {
-  const x1 = 0;
-  const y1 = 0;
-  const x2 = fieldRect.width - CARROT_SIZE;
-  const y2 = fieldRect.height - CARROT_SIZE;
-  for (let i = 0; i < count; i++) {
-    const item = document.createElement("img");
-    item.setAttribute("class", className);
-    item.setAttribute("src", src);
-    item.style.position = "absolute";
-    const x = randomNumber(x1, x2);
-    const y = randomNumber(y1, y2);
-    item.style.left = `${x}px`;
-    item.style.top = `${y}px`;
-    field.appendChild(item);
-  }
-}
-
-function randomNumber(min, max) {
-  return Math.random() * (max - min) + min;
 }
