@@ -89,6 +89,6 @@ popup.js 업로드 완료.
 자바스크립트는 타입스크립트처럼 프라이빗한 변수를 만들 수 없어서  
 `_addItem`과 같이 언더스코어를 앞에 붙여서 접근 범위를 명시할 수 있다는 것을 알게 되었다.  
 
-`this.field.addEventListener("click", this.onClick);`
+`this.field.addEventListener("click", this.onClick);`  
 클릭 이벤트리스너를 제대로 등록했음에도 아이템 클릭 시 작동이 일어나지 않는 문제.
 
