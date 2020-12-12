@@ -8,7 +8,7 @@ export default class Field {
     this.bugCount = bugCount;
     this.field = document.querySelector(".main");
     this.fieldRect = this.field.getBoundingClientRect();
-    this.field.addEventListener("click", this.onClick);
+    this.field.addEventListener("click", (e) => this.onClick(e));
   }
 
   init() {
