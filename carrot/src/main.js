@@ -2,7 +2,6 @@
 
 import PopUp from "./popup.js";
 import { GameBuilder, Reason } from "./game.js";
-import Field from "./field.js";
 
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
