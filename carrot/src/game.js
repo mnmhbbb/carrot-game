@@ -1,6 +1,12 @@
 import Field from "./field.js";
 
-export default class GameBuilder {
+export const Reason = Object.freeze({
+  win: "win",
+  lose: "lose",
+  cancel: "cancel",
+});
+
+export class GameBuilder {
   withGameDuration(duration) {
     this.gameDuration = duration;
     return this;
@@ -72,7 +78,7 @@ class Game {
     this.started = false;
     this.stopTimer();
     this.pauseHide();
-    this.onGameStop && this.onGameStop("cancel");
+    this.onGameStop && this.onGameStop(Reason.cancel);
   }
 
   //게임 종료
@@ -80,7 +86,7 @@ class Game {
     this.started = false;
     this.pauseHide();
     this.stopTimer();
-    this.onGameStop && this.onGameStop(win ? "win" : "lose");
+    this.onGameStop && this.onGameStop(win ? Reason.win : Reason.lose);
   }
 
   onItemClick = (item) => {
