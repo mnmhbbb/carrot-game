@@ -115,8 +115,11 @@ onClick = e => { }
 ```
 다음과 같이 화살표함수를 활용하여 이벤트를 받아오면 정상적으로 기능이 실행된다.
 
+
 `bind`를 알아보면서 알게 된 함수의 메소드 `call`과 `apply`가 있다.  
 this에 객체를 바인딩한다는 공통점이 있지만, `call`과 `apply`는 함수를 호출한다.  
-`func.apply(thisArg, [argsArray])`   
+```javascript
+func.apply(thisArg, [argsArray]) 
+```
 `thisArg`는 this에 바인딩할 객체, `argArray`는 함수를 호출할 때 넘길 인자들의 배열을 나타냄  
 (`call`은 보통 함수처럼 인자를 넣는다.)
