@@ -62,7 +62,7 @@ boolean을 기준으로 크게 `startGame/stopGame/finishGame` 3 함수로 나�
 당근을 클릭했는지, 벌레를 클릭했는지 구분하는 코드를 작성하던 중, `elements.matches()`에 대해 알게 되었다.  
 기능은 `classList.contains`과 동일하게 selector에 대해 확인할 수 있지만 더 간편하다. 다만, 브라우저 호환성이 조금 떨어진다.
 
-pop-up 엘리먼트에 `opacity`를 주면 자식요소에 상속되는 문제는 `background-color: #00000090;` 을 입력하는 방법으로 해결했다.
+pop-up 엘리먼트에 `opacity`를 줬을 때 자식요소까지 상속되는 문제는 `background-color: #00000090;` 을 입력하는 방법으로 해결했다.
 
 정리가 필요하다.  
 너무나 뒤죽박죽 얼렁뚱땅  
@@ -78,7 +78,7 @@ pop-up 엘리먼트에 `opacity`를 주면 자식요소에 상속되는 문제�
 
 자바스크립트 파일을 역할과 목적에 따라서 모듈로 나누기.  
 모듈은 `export`와 `import`를 붙여서 내보내고 가져올 수 있다.  
-html에서 `<script type="module">`으로 해당 스크립트가 모듈이라는 걸 알 수 있게 나타낸다.  
+html에 `<script type="module">`으로 해당 스크립트가 모듈이라는 걸 알 수 있게 나타낸다.  
 `Class`에 대해 공부하고 이용하기.  
 
 popup.js 업로드 완료.
