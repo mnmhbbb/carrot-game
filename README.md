@@ -92,3 +92,31 @@ popup.js 업로드 완료.
 `this.field.addEventListener("click", this.onClick);`  
 클릭 이벤트리스너를 제대로 등록했음에도 아이템 클릭 시 작동이 되지 않는 문제.
 
+### 201212
+
+이전의 문제는 Class 내부에서 호출한 `this.onClick`가 원인이었다.  
+this가 바인딩 되지 않아서 Class에 대한 정보가 전달되지 않아서 발생한 문제.  
+이 문제를 통해 `this`, `bind` 그리고 `arrow function`에 대해 자세히 공부할 수 있었다.  
+
+```javascript
+this.onClick = this.onClick.bind(this);
+```
+위와 같이 함수와 this(현 클래스)를 바인딩한 것을 `this.onClick`라고 명시적으로 다시 할당하는 방법  
+
+그리고 `arrow function`의 특징을 활용하여 사용하는 방법이 있다.  
+`arrow function`안에서 this를 사용하면 외부에서 this 값을 가져온다.  
+따라서,
+```javascript
+this.field.addEventListener('click', e => on.Click(e));
+```
+또는,
+```javascript
+onClick = e => { }
+```
+다음과 같이 화살표함수를 활용하여 이벤트를 받아오면 정상적으로 기능이 실행된다.
+
+`bind`를 알아보면서 알게 된 함수의 메소드 `call`과 `apply`가 있다.  
+this에 객체를 바인딩한다는 공통점이 있지만, `call`과 `apply`는 함수를 호출한다.  
+`func.apply(thisArg, [argsArray])`   
+`thisArg`는 this에 바인딩할 객체, `argArray`는 함수를 호출할 때 넘길 인자들의 배열을 나타냄  
+(`call`은 보통 함수처럼 인자를 넣는다.)
