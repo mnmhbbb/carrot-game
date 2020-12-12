@@ -43,7 +43,7 @@ class Game {
 
     this.palyBtn.addEventListener("click", () => {
       if (this.started) {
-        this.stop();
+        this.stop(Reason.cancel);
       } else {
         this.start();
       }
@@ -73,20 +73,12 @@ class Game {
     this.startTimer();
   }
 
-  //게임 중지
-  stop() {
+  //게임 중지 & 종료 어쨌든 게임 중단
+  stop(reason) {
     this.started = false;
     this.stopTimer();
     this.pauseHide();
-    this.onGameStop && this.onGameStop(Reason.cancel);
-  }
-
-  //게임 종료
-  finish(win) {
-    this.started = false;
-    this.pauseHide();
-    this.stopTimer();
-    this.onGameStop && this.onGameStop(win ? Reason.win : Reason.lose);
+    this.onGameStop && this.onGameStop(reason);
   }
 
   onItemClick = (item) => {
@@ -97,10 +89,10 @@ class Game {
       this.score++;
       this.updateScore();
       if (this.score === this.carrotCount) {
-        this.finish(true);
+        this.stop(Reason.win);
       }
     } else if (item === "bug") {
-      this.finish(false);
+      this.stop(Reason.lose);
     }
   };
 
@@ -122,7 +114,7 @@ class Game {
       this.updateTimer(--remainingTimeSec);
       if (remainingTimeSec <= 0) {
         clearInterval(this.timer);
-        this.finish(this.carrotCount === this.score);
+        this.stop(this.carrotCount === this.score ? Reason.win : Reason.lose);
         return;
       }
     }, 1000);
