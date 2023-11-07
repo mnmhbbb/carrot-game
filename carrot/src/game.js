@@ -39,9 +39,9 @@ class Game {
 
     this.gameTimer = document.querySelector(".game__time");
     this.gameScore = document.querySelector(".game__score");
-    this.palyBtn = document.querySelector(".game__play");
+    this.playBtn = document.querySelector(".game__play");
 
-    this.palyBtn.addEventListener("click", () => {
+    this.playBtn.addEventListener("click", () => {
       if (this.started) {
         this.stop(Reason.cancel);
       } else {
@@ -131,14 +131,14 @@ class Game {
   }
 
   pauseHide() {
-    this.palyBtn.style.visibility = "hidden";
+    this.playBtn.style.visibility = "hidden";
   }
 
   btnPause() {
     const icon = document.querySelector(".fas");
     icon.classList.remove("fa-play");
     icon.classList.add("fa-pause");
-    this.palyBtn.style.visibility = "visible";
+    this.playBtn.style.visibility = "visible";
   }
 
   updateScore() {
