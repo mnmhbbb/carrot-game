@@ -1,6 +1,6 @@
 # carrot-game
 
-강의 수강 전에 혼자 먼저, 인강 보고 리팩토링
+강의 수강 전에 혼자 먼저, 인강 보고 리팩토링.
 
 ---
 
@@ -54,7 +54,6 @@ boolean을 기준으로 크게 `startGame/stopGame/finishGame` 3 함수로 나�
 당근을 클릭했는지, 벌레를 클릭했는지 구분하는 코드를 작성하던 중, `elements.matches()`에 대해 알게 되었다.  
 기능은 `classList.contains`과 동일하게 selector에 대해 확인할 수 있지만 더 간편하다. 다만, 브라우저 호환성이 조금 떨어진다.
 
-
 pop-up 엘리먼트에 `opacity`를 줬을 때 자식요소까지 상속되는 문제는 `background-color: #00000090;` 을 입력하는 방법으로 해결했다.
 
 정리가 필요하다.  
@@ -65,14 +64,14 @@ pop-up 엘리먼트에 `opacity`를 줬을 때 자식요소까지 상속되는 �
 
 ### 201210
 
-인강에서 배운 내용으로 계속해서 코드 보완할 예정  
+인강에서 배운 내용으로 계속해서 코드 보완할 예정
 
 ### 201211
 
 자바스크립트 파일을 역할과 목적에 따라서 모듈로 나누기.  
 모듈은 `export`와 `import`를 붙여서 내보내고 가져올 수 있다.  
 html에 `<script type="module">`으로 해당 스크립트가 모듈이라는 걸 알 수 있게 나타낸다.  
-`Class`에 대해 공부하고 이용하기.  
+`Class`에 대해 공부하고 이용하기.
 
 popup.js 업로드 완료.
 
@@ -80,7 +79,7 @@ popup.js 업로드 완료.
 
 같은 방법으로 field.js 만드는 법을 배웠다.  
 자바스크립트는 타입스크립트처럼 프라이빗한 변수를 만들 수 없어서  
-`_addItem`과 같이 언더스코어를 앞에 붙여서 접근 범위를 명시할 수 있다는 것을 알게 되었다.  
+`_addItem`과 같이 언더스코어를 앞에 붙여서 접근 범위를 명시할 수 있다는 것을 알게 되었다.
 
 `this.field.addEventListener("click", this.onClick);`  
 클릭 이벤트리스너를 제대로 등록했음에도 아이템 클릭 시 작동이 되지 않는 문제.
@@ -89,42 +88,48 @@ popup.js 업로드 완료.
 
 이전의 문제는 Class 내부에서 호출한 `this.onClick`가 원인이었다.  
 this가 바인딩 되지 않아서 Class에 대한 정보가 전달되지 않아서 발생한 문제.  
-이 문제를 통해 `this`, `bind` 그리고 `arrow function`에 대해 자세히 공부할 수 있었다.  
+이 문제를 통해 `this`, `bind` 그리고 `arrow function`에 대해 자세히 공부할 수 있었다.
 
 ```javascript
 this.onClick = this.onClick.bind(this);
 ```
-위와 같이 함수와 this(현 클래스)를 바인딩한 것을 `this.onClick`라고 명시적으로 다시 할당하는 방법  
+
+위와 같이 함수와 this(현 클래스)를 바인딩한 것을 `this.onClick`라고 명시적으로 다시 할당하는 방법
 
 그리고 `arrow function`의 특징을 활용하여 사용하는 방법이 있다.  
 `arrow function`안에서 this를 사용하면 외부에서 this 값을 가져온다.  
 따라서,
+
 ```javascript
-this.field.addEventListener('click', e => on.Click(e));
+this.field.addEventListener('click', (e) => on.Click(e));
 ```
+
 또는,
+
 ```javascript
-onClick = e => { }
+onClick = (e) => {};
 ```
+
 다음과 같이 화살표함수를 활용하여 이벤트를 받아오면 정상적으로 기능이 실행된다.
 
-
 `bind`를 알아보면서 알게 된 함수의 메소드 `call`과 `apply`가 있다.  
-this에 객체를 바인딩한다는 공통점이 있지만, `call`과 `apply`는 함수를 호출한다.  
+this에 객체를 바인딩한다는 공통점이 있지만, `call`과 `apply`는 함수를 호출한다.
+
 ```javascript
-func.apply(thisArg, [argsArray]) 
+func.apply(thisArg, [argsArray]);
 ```
+
 `thisArg`는 this에 바인딩할 객체, `argArray`는 함수를 호출할 때 넘길 인자들의 배열을 나타냄  
 (`call`은 보통 함수처럼 인자를 넣는다.)
 
 ### 201213
-game 부분까지 완료.  
 
-
+game 부분까지 완료.
 
 `const game = new Game(5, 5, 5);` 부분을 개선하기 위해 `builder pattern` 이라는 것을 배웠다.  
-위 코드는 어떤 위치에 어떤 타입의 데이터를 받는지 명시적이지 않아서 그 인자가 어떤 값인지 파악이 힘들기 때문에 실수할 가능성이 있다.  
+위 코드는 어떤 위치에 어떤 타입의 데이터를 받는지 명시적이지 않아서 그 인자가 어떤 값인지 파악이 힘들기 때문에 실수할 가능성이 있다.
 
 ### 201213
+
 `Object.freeze()`을 이용하여 데이터 타입을 보장할 수 있도록 코드를 개선하였다.  
 객체를 동결시키는 메서드이다. 따라서 지정된 오브젝트 멤버만 쓸 수 있게 된다.
